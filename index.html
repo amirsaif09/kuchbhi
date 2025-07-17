@@ -56,7 +56,7 @@
       justify-content: center;
       align-items: flex-start;
       animation: fadeIn 2s ease-in-out;
-           
+      object-fit: cover;
       
     }
 
@@ -114,7 +114,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: #1f1f1f;
+  background: transparent;
   border-radius: 10px;
   overflow: hidden;
   gap: 1rem;
@@ -131,6 +131,7 @@
   height: 250px;
   object-fit: cover;
   border-radius: 10px;
+  height: 100%;
 }
 
 .card-content {
@@ -235,7 +236,7 @@
   padding: 2rem 1rem;
   text-align: center;
   margin-top: 2rem;
-  border-top: 2px solid #ff4500;
+  border: 0;
 }
 
 .coming-soon-box {
@@ -376,13 +377,72 @@
   color: #ffcc00;
 }
 
+ /* Your existing styles here */
+    .category-menu {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      right: 0;
+      background-color: #1a1a1a;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      border-top: 2px solid #ff4500;
+      z-index: 999;
+      transition: bottom 0.5s ease-in-out;
+    }
+
+    .category-menu.active {
+      bottom: 0;
+    }
+
+    .category-menu ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .category-menu ul li {
+      padding: 0.5rem 0;
+      font-size: 1.2rem;
+      border-bottom: 1px solid #333;
+    }
+
+    .show-menu-btn.hero button{
+      position: fixed;
+      bottom: 20px;
+      padding: 0.7rem 1.2rem;
+      background: #ff4500;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .show-menu-btn:hover {
+      background-color: #e63e00;
+    }
+    .close-menu-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1rem;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+.close-menu-btn:hover {
+  color: #ff4500;
+}
   </style>
 </head>
 <body>
 
   <header>
-    <div style="color:#ff4500;font-weight:bold;font-size:1.3rem;">CHANDAUSI FOOD</div>
-    <nav>
+    <div style="color:#ff4500;font-weight:bold;font-size:1.3rem;display: inline-flex;">CHANDAUSI FOOD</div>
+    <nav style="display:inline-flex; gap: .2rem;">
       <a href="#">Home</a>
       <a href="#">About</a>
       <a href="#">Contact</a>
@@ -394,7 +454,20 @@
   <p>Experience the best food in town with our wide variety of delicious dishes.</p>
   
  
-  <button >View Menu</button>
+  <button   class="show-menu-btn" onclick="toggleCategories()">View Menu</button>
+  <div class="category-menu" id="categoryMenu">
+     <button class="close-menu-btn" onclick="toggleCategories()">×</button>
+    <ul>
+      <li>Home</li>
+      <li>Sweet</li>
+      <li>Chinese</li>
+      <li>Indian</li>
+      <li>Drinks</li>
+      <li>Italian</li>
+      <li>Non-Vegetarian</li>
+      <li>Vegetarian</li>
+    </ul>
+  </div>
 </section>
 
 
@@ -481,6 +554,10 @@
 </div>
 
 </footer>
+<script> function toggleCategories() {
+      const menu = document.getElementById('categoryMenu');
+      menu.classList.toggle('active');
+    }</script>
 
 
 </body>
