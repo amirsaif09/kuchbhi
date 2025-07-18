@@ -21,76 +21,209 @@
       line-height: 1.6;
       background: linear-gradient(to top right , #eb0e0e, #000000, #eb0e0e);
       background-blend-mode: overlay;
-      
+      overflow-x: hidden;
     }
 
     header {
       position: sticky;
       top: 0;
       background: #000000;
-      padding: 1rem 2rem;
+      padding: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
     }
 
-    header nav a {
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      background: -webkit-linear-gradient(#d0d0d0, #e61616);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Header right section with search and menu toggle */
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Search bar styles */
+    .search-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      padding: 0.5rem 1rem;
+      padding-right: 2.5rem;
+      border-radius: 20px;
+      border: none;
+      background: #333;
+      color: white;
+      width: 0;
+      transition: width 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .search-input.active {
+      width: 200px;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .search-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      position: absolute;
+      right: 0;
+      padding: 0.5rem;
+    }
+
+    /* Mobile Navigation */
+    .mobile-nav-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .nav-menu li a {
       color: #fff;
-      margin: 0 1rem;
       text-decoration: none;
       font-weight: 700;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    .nav-menu li a:hover {
+      color: #ff4500;
+    }
+
+    /* Mobile styles */
+    @media (max-width: 767px) {
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: #1a1a1a;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+      }
+
+      .nav-menu.active {
+        right: 0;
+        transform: translateX(0);
+      }
+
+      .nav-menu li {
+        width: 100%;
+        text-align: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid #333;
+      }
+
+      .nav-menu li:last-child {
+        border-bottom: none;
+      }
+
+      .search-input.active {
+        width: 150px;
+      }
+    }
+
+    /* Desktop styles */
+    @media (min-width: 768px) {
+      .mobile-nav-toggle {
+        display: none;
+      }
+      
+      .search-input {
+        width: 200px;
+        opacity: 1;
+        visibility: visible;
+      }
     }
 
     .hero {
       text-align: center;
-      padding: 32px;
-      height: 100vh;
+      padding: 2rem 1rem;
+      min-height: 100vh;
       background: linear-gradient(to bottom, #000000, #0f0f0f);
       background-image: url('papa image.jpg');
       opacity: 0.9;
       background-size: cover;
       background-position: center;
-       display: flex;
+      display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       animation: fadeIn 2s ease-in-out;
-      object-fit: cover;
-      
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 1rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
     }
 
     .hero h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: 900;
       color: #ff4500;
       animation: fadeInUp 1s ease-in-out;
       transition: text-shadow 0.3s ease-in-out;
       text-shadow: 0 0 1px #ff4500, 0 0 2px #ff4500, 0 0 4px #ff4500, 0 0 8px #ff4500;
-      margin-bottom: 10px;   
+      margin-bottom: 1rem;
     }
 
     .glow-text:hover {
-  text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500, 0 0 20px #ff4500, 0 0 40px #ff4500;
-}
+      text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500, 0 0 20px #ff4500, 0 0 40px #ff4500;
+    }
+
     .hero p {
-     font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 400;
-      max-width: 500px;
+      margin-bottom: 1.5rem;
     }
 
     .hero button {
-  padding: 0.7rem 1.5rem;
-  border: 2px solid #ff4500;
-  background: transparent;
-  color: #ff4500;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  margin-top: 20px;
-  align-self: center;
-}
-
-    
+      padding: 0.7rem 1.5rem;
+      border: 2px solid #ff4500;
+      background: transparent;
+      color: #ff4500;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      font-weight: bold;
+      border-radius: 5px;
+    }
 
     .hero button:hover {
       background: #ff4500;
@@ -100,75 +233,61 @@
     .section-title {
       text-align: center;
       font-size: 2rem;
-      margin: 3rem 0 1rem;
+      margin: 2rem 0;
+      color: #ffffff;
     }
 
-    .cards.alternate-layout {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 0 1rem;
-}
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 0 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-.card {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background: transparent;
-  border-radius: 10px;
-  overflow: hidden;
-  gap: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  padding: 1rem;
-}
+    .card {
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-.card:nth-child(even) {
-  flex-direction: row-reverse;
-}
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
 
-.card img {
-  width: 50%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 10px;
-  height: 100%;
-}
+    .card-content {
+      padding: 1rem;
+    }
 
-.card-content {
-  width: 50%;
-}
+    .card-content h3 {
+      color: #fff;
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
 
-.card-content h3 {
-  color: #fff;
-  margin-bottom: 0.5rem;
-}
-
-.card-content p {
-  font-size: 0.95rem;
-  color: #ccc;
-}
-
-/* Mobile responsive fallback */
-@media (max-width: 768px) {
-  .card {
-    flex-direction: column !important;
-  }
-  .card img,
-  .card-content {
-    width: 100%;
-  }
-}
+    .card-content p {
+      font-size: 1rem;
+      color: #ccc;
+    }
 
     .reviews {
       padding: 2rem 1rem;
       text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .review-cards {
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      padding: 1rem;
     }
 
     .review {
@@ -193,23 +312,30 @@
       background: #000000;
       font-size: 0.9rem;
       color: #aaa;
+      margin-top: 2rem;
     }
-  .social-icon {
-  margin: 0 10px;
-  font-size: 1.4rem;
-  text-decoration: none;
-  transition: transform 0.3s ease-in-out;
-}
 
-.social-icon:hover {
-  transform: scale(1.2);
-}
+    .social-icons {
+      margin-top: 1rem;
+    }
 
-/* Brand Colors */
-.social-icon.facebook   { color: #1877F2; }   /* Facebook Blue */
-.social-icon.instagram { color: #E1306C; }   /* Instagram Pink */
-.social-icon.youtube   { color: #FF0000; }   /* YouTube Red */
-.social-icon.twitter   { color: #1DA1F2; }   /* Twitter Blue */
+    .social-icon {
+      margin: 0 10px;
+      font-size: 1.4rem;
+      text-decoration: none;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .social-icon:hover {
+      transform: scale(1.2);
+    }
+
+    /* Brand Colors */
+    .social-icon.facebook { color: #1877F2; }
+    .social-icon.instagram { color: #E1306C; }
+    .social-icon.youtube { color: #FF0000; }
+    .social-icon.twitter { color: #1DA1F2; }
+
     @keyframes fadeInUp {
       0% {
         opacity: 0;
@@ -221,163 +347,85 @@
       }
     }
 
-    @media (min-width: 600px) {
-      .review-cards {
-        flex-direction: row;
-        justify-content: center;
-      }
-    }
-    .section-title {
-      font-size: 3.8rem;
-      margin: 3rem 0 1rem;
-      color: #ffffff;
-    }
     .special-offers {
-  padding: 2rem 1rem;
-  text-align: center;
-  margin-top: 2rem;
-  border: 0;
-}
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: 2rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+    }
 
-.coming-soon-box {
-  background: #1a1a1a;
-  margin: 1rem auto;
-  max-width: 600px;
-  padding: 1.5rem;
-  border-radius: 10px;
-  border: 1px dashed #ff4500;
-  font-size: 1.2rem;
-  color: #ffcccb;
-  animation: fadeInUp 1s ease-in-out;
-}
+    .coming-soon-box {
+      background: #1a1a1a;
+      margin: 1rem auto;
+      max-width: 600px;
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 1px dashed #ff4500;
+      font-size: 1.2rem;
+      color: #ffcccb;
+      animation: fadeInUp 1s ease-in-out;
+    }
 
-.glow-coming {
-  color: #ff4500;
-  text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500;
-  font-weight: bold;
-  background-color: transparent;
-}
+    .glow-coming {
+      color: #ff4500;
+      text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500;
+      font-weight: bold;
+    }
+
     .glow-coming:hover {
       text-shadow: 0 0 10px #ff4500, 0 0 20px #ff4500;
     }
+
     .newsletter {
-  background: #1a1a1a;
-  padding: 2rem 1rem;
-  text-align: center;
-  border-top: 2px solid #ff4500;
-  margin-top: 3rem;
-}
+      background: rgba(240, 234, 234, 0.003);
+      filter: blur(50%);
+      padding: 2rem 1rem;
+      text-align: center;
+      border-top: none;
+      margin-top: 3rem;
+      max-width: 1200px;
+      margin: 3rem auto 0;
+    }
 
-.newsletter-desc {
-  color: #ccc;
-  margin-bottom: 1rem;
-  font-size: 1rem;
-}
+    .newsletter-desc {
+      color: #ccc;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
 
-.newsletter-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
-  margin-top: 1rem;
-}
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
 
-.newsletter-form input {
-  padding: 0.8rem;
-  width: 300px;
-  max-width: 90%;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-}
+    .newsletter-form input {
+      padding: 0.8rem;
+      width: 100%;
+      max-width: 300px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
 
-.newsletter-form button {
-  padding: 0.7rem 1.5rem;
-  border: none;
-  background: #ff4500;
-  color: white;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
+    .newsletter-form button {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      background: #ff4500;
+      color: white;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
 
-.newsletter-form button:hover {
-  background: #e63e00;
-}
+    .newsletter-form button:hover {
+      background: #e63e00;
+    }
 
-@media (max-width: 500px) {
-  .newsletter-form input {
-    width: 100%;
-  }
-}
-  
-.add-review {
-  padding: 2rem 1rem;
-  background: #1a1a1a;
-  border-top: 2px solid #ff4500;
-  text-align: center;
-}
-
-.review-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 500px;
-  margin: auto;
-  margin-top: 1rem;
-}
-
-.review-form input,
-.review-form textarea {
-  padding: 0.8rem;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  width: 100%;
-}
-
-.review-form button {
-  background: #ff4500;
-  color: white;
-  padding: 0.8rem;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.review-form button:hover {
-  background: #e63e00;
-}
-
-.star-rating {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  color: #ffcc00;
-}
-
-.stars input {
-  display: none;
-}
-
-.stars label {
-  font-size: 1.5rem;
-  color: #ccc;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.stars input:checked ~ label,
-.stars label:hover,
-.stars label:hover ~ label {
-  color: #ffcc00;
-}
-
- /* Your existing styles here */
     .category-menu {
       position: fixed;
       bottom: -100%;
@@ -390,6 +438,8 @@
       border-top: 2px solid #ff4500;
       z-index: 999;
       transition: bottom 0.5s ease-in-out;
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
     .category-menu.active {
@@ -399,166 +449,306 @@
     .category-menu ul {
       list-style: none;
       padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
     }
 
     .category-menu ul li {
-      padding: 0.5rem 0;
-      font-size: 1.2rem;
+      padding: 0.8rem 0;
+      font-size: 1rem;
       border-bottom: 1px solid #333;
+      cursor: pointer;
     }
 
-    .show-menu-btn.hero button {
+    .category-menu ul li:hover {
+      color: #ff4500;
+    }
+
+    .show-menu-btn {
       position: fixed;
       bottom: 20px;
-      padding: 0.7rem 1.2rem;
+      right: 20px;
+      padding: 0.8rem 1.5rem;
       background: #ff4500;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 30px;
       font-weight: bold;
       cursor: pointer;
       z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .show-menu-btn:hover {
       background-color: #e63e00;
     }
+
     .close-menu-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 1rem;
-    background: none;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-}
-.close-menu-btn:hover {
-  color: #ff4500;
-}
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .close-menu-btn:hover {
+      color: #ff4500;
+    }
+
+    /* Review form in menu */
+    .menu-review-form {
+      padding: 1rem;
+      margin-top: 1rem;
+      border-top: 1px solid #333;
+    }
+
+    .menu-review-form h3 {
+      margin-bottom: 1rem;
+      color: #ff4500;
+    }
+
+    .menu-review-form input,
+    .menu-review-form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .menu-review-form button {
+      background: #ff4500;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    /* Overlay for mobile menu */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <div style="color:#ff4500;font-weight:bold;font-size:1.3rem;display: inline-flex;">CHANDAUSI FOOD</div>
-    <nav style="display:flex; gap: .1rem;">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
+    <div class="logo">CHANDAUSI FOOD</div>
+    <div class="header-right">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search...">
+        <button class="search-btn" id="searchToggle">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      <button class="mobile-nav-toggle" id="mobileNavToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <nav>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
     </nav>
+    <div class="overlay" id="overlay"></div>
   </header>
 
   <section class="hero">
-  <h1 class="glow-text">Welcome to Chandausi Food</h1>
-  <p>Experience the best food in town with our wide variety of delicious dishes.</p>
-  
- 
-  <button   class="show-menu-btn" onclick="toggleCategories()">View Menu</button>
-  <div class="category-menu" id="categoryMenu">
-     <button class="close-menu-btn" onclick="toggleCategories()">×</button>
-    <ul>
-      <li>Home</li>
-      <li>Sweet</li>
-      <li>Chinese</li>
-      <li>Indian</li>
-      <li>Drinks</li>
-      <li>Italian</li>
-      <li>Non-Vegetarian</li>
-      <li>Vegetarian</li>
-    </ul>
-  </div>
-</section>
-
-
- <section>
-  <h2 class="section-title">Trending & Hots</h2>
-  <div class="cards alternate-layout">
-    <div class="card">
-      <img src="https://i0.wp.com/prasuma.com/wp-content/uploads/2020/11/Tandoori-Momo.jpg?fit=800%2C470&ssl=1" alt="Tandoori Momos">
-      <div class="card-content">
-        <h3>Tandoori Momos</h3>
-        <p>We celebrate the rich heritage of Tandoori Momos of Chilli Inn, Station Road Chandausi.</p>
-      </div>
+    <div class="hero-content">
+      <h1 class="glow-text">Welcome to Chandausi Food</h1>
+      <p>Experience the best food in town with our wide variety of delicious dishes.</p>
+      <button onclick="toggleCategories()"><i class="fas fa-utensils"></i> View Menu</button>
     </div>
-    <div class="card">
-      <img src="https://www.shutterstock.com/image-photo/blue-lagoon-mojitoa-mocktail-drink-600nw-2198862581.jpg" alt="Blue Lagoon">
-      <div class="card-content">
-        <h3>Blue Lagoon</h3>
-        <p>Fusion of spice and heritage from Devarkhera, Chandausi.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://www.shutterstock.com/image-photo/deliciously-spiced-chicken-tikka-kabab-600nw-2495838045.jpg" alt="Chicken Tikka">
-      <div class="card-content">
-        <h3>Chicken Tikka</h3>
-        <p>Authentic Indian flavors crafted with dedication and care.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://www.foodandwine.com/thmb/XdFd-DvTtouryLCjeCqwhfmmK-A=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/molten-chocolate-cake-FT-RECIPE0220-0a33d7d0ab0c45588f7bfe742d33a9bc.jpg" alt="Chocolate Lava">
-      <div class="card-content">
-        <h3>Chocolate Lava</h3>
-        <p>Decadent and rich dessert to satisfy your sweet cravings.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="special-offers">
-  <h2 class="section-title">Special Offers!!!</h2>
-  <div class="coming-soon-box">
-    <p>🎉 Exciting offers are <span class="glow-coming">Coming Soon</span> — Stay tuned!</p>
-  </div>
-</section>
-<section class="add-review">
-  <h2 class="section-title">Add Your Review</h2>
-  <form class="review-form">
-    <input type="text" name="restaurant" placeholder="Restaurant Name" required />
-    <input type="text" name="food" placeholder="Food Name" required />
     
-    <div class="star-rating">
-      <label>Rating:</label>
-      <div class="stars">
-        <input type="radio" name="rating" value="5" id="star5"><label for="star5">&#9733;</label>
-        <input type="radio" name="rating" value="4" id="star4"><label for="star4">&#9733;</label>
-        <input type="radio" name="rating" value="3" id="star3"><label for="star3">&#9733;</label>
-        <input type="radio" name="rating" value="2" id="star2"><label for="star2">&#9733;</label>
-        <input type="radio" name="rating" value="1" id="star1"><label for="star1">&#9733;</label>
+    <div class="category-menu" id="categoryMenu">
+      <button class="close-menu-btn" onclick="toggleCategories()">×</button>
+      <h2>Food Categories</h2>
+      <ul>
+        <li>Home</li>
+        <li>Sweet</li>
+        <li>Chinese</li>
+        <li>Indian</li>
+        <li>Drinks</li>
+        <li>Italian</li>
+        <li>Non-Vegetarian</li>
+        <li>Vegetarian</li>
+        <li>Fast Food</li>
+        <li>Desserts</li>
+        <li>Breakfast</li>
+      </ul>
+      <div class="menu-review-form">
+        <h3>Add Your Review</h3>
+        <input type="text" placeholder="Your Name" required>
+        <input type="text" placeholder="Restaurant Name" required>
+        <input type="text" placeholder="Food Name" required>
+        <textarea placeholder="Your review..." rows="3" required></textarea>
+        <button type="submit">Submit Review</button>
       </div>
     </div>
+    
+    
+    </button>
+  </section>
 
-    <textarea name="comment" placeholder="Your comments..." rows="4"></textarea>
-    <button type="submit">Submit Review</button>
-  </form>
-</section>
+  <section>
+    <h2 class="section-title">Trending & Hots</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="https://i0.wp.com/prasuma.com/wp-content/uploads/2020/11/Tandoori-Momo.jpg?fit=800%2C470&ssl=1" alt="Tandoori Momos">
+        <div class="card-content">
+          <h3>Tandoori Momos</h3>
+          <p>We celebrate the rich heritage of Tandoori Momos of Chilli Inn, Station Road Chandausi.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://www.shutterstock.com/image-photo/blue-lagoon-mojitoa-mocktail-drink-600nw-2198862581.jpg" alt="Blue Lagoon">
+        <div class="card-content">
+          <h3>Blue Lagoon</h3>
+          <p>Fusion of spice and heritage from Devarkhera, Chandausi.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://www.shutterstock.com/image-photo/deliciously-spiced-chicken-tikka-kabab-600nw-2495838045.jpg" alt="Chicken Tikka">
+        <div class="card-content">
+          <h3>Chicken Tikka</h3>
+          <p>Authentic Indian flavors crafted with dedication and care.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://www.foodandwine.com/thmb/XdFd-DvTtouryLCjeCqwhfmmK-A=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/molten-chocolate-cake-FT-RECIPE0220-0a33d7d0ab0c45588f7bfe742d33a9bc.jpg" alt="Chocolate Lava">
+        <div class="card-content">
+          <h3>Chocolate Lava</h3>
+          <p>Decadent and rich dessert to satisfy your sweet cravings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="special-offers">
+    <h2 class="section-title">Special Offers!!!</h2>
+    <div class="coming-soon-box">
+      <p>🎉 Exciting offers are <span class="glow-coming">Coming Soon</span> — Stay tuned!</p>
+    </div>
+  </section>
+
+  <section class="reviews">
+    <h2 class="section-title">Customer Reviews</h2>
+    <div class="review-cards">
+      <div class="review">
+        <h4>Rahul Sharma</h4>
+        <div class="star-rating">★★★★★</div>
+        <p>"The Tandoori Momos are absolutely fantastic! Best in town!"</p>
+      </div>
+      <div class="review">
+        <h4>Priya Singh</h4>
+        <div class="star-rating">★★★★☆</div>
+        <p>"Great variety and authentic flavors. Will visit again!"</p>
+      </div>
+      <div class="review">
+        <h4>Amit Patel</h4>
+        <div class="star-rating">★★★★★</div>
+        <p>"Excellent service and delicious food. Highly recommended!"</p>
+      </div>
+    </div>
+  </section>
 
   <section class="newsletter">
-  <h2 class="section-title">Subscribe to Our Newsletter</h2>
-  <p class="newsletter-desc">Get new exciting offers straight to your inbox!</p>
-  <form class="newsletter-form">
-    <input type="email" placeholder="Enter your email" required />
-    <button type="submit">Subscribe</button>
-  </form>
-</section>
-
+    <h2 class="section-title">Subscribe to Our Newsletter</h2>
+    <p class="newsletter-desc">Get new exciting offers straight to your inbox!</p>
+    <form class="newsletter-form">
+      <input type="email" placeholder="Enter your email" required />
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
 
   <footer>
-  <p>Copyright © 2025 Chandausi Food - All Rights Reserved.</p>
-  
-  <div style="margin-top: 1rem;">
-  <a href="https://facebook.com" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
-  <a href="https://instagram.com" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
-  <a href="https://youtube.com" target="_blank" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
-  <a href="https://twitter.com" target="_blank" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
-</div>
+    <p>Copyright © 2025 Chandausi Food - All Rights Reserved.</p>
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://instagram.com" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://youtube.com" target="_blank" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+      <a href="https://twitter.com" target="_blank" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+  </footer>
 
-</footer>
-<script> function toggleCategories() {
+  <script>
+    // Toggle mobile navigation
+    const mobileNavToggle = document.getElementById('mobileNavToggle');
+    const navMenu = document.getElementById('navMenu');
+    const overlay = document.getElementById('overlay');
+
+    mobileNavToggle.addEventListener('click', function() {
+      navMenu.classList.toggle('active');
+      overlay.classList.toggle('active');
+      document.body.classList.toggle('no-scroll');
+    });
+
+    // Close mobile menu when clicking on overlay
+    overlay.addEventListener('click', function() {
+      navMenu.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.classList.remove('no-scroll');
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', function() {
+        navMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+      });
+    });
+
+    // Toggle search bar on mobile
+    const searchToggle = document.getElementById('searchToggle');
+    const searchInput = document.querySelector('.search-input');
+
+    searchToggle.addEventListener('click', function() {
+      if (window.innerWidth <= 767) {
+        searchInput.classList.toggle('active');
+      }
+    });
+
+    // Toggle food categories menu
+    function toggleCategories() {
       const menu = document.getElementById('categoryMenu');
       menu.classList.toggle('active');
-    }</script>
-
-
+    }
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const menu = document.getElementById('categoryMenu');
+      const showBtn = document.querySelector('.show-menu-btn');
+      
+      if (!menu.contains(event.target) && event.target !== showBtn && !showBtn.contains(event.target)) {
+        menu.classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>
