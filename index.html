@@ -43,14 +43,12 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* Header right section with search and menu toggle */
     .header-right {
       display: flex;
       align-items: center;
       gap: 1rem;
     }
 
-    /* Search bar styles */
     .search-container {
       position: relative;
       display: flex;
@@ -87,7 +85,6 @@
       padding: 0.5rem;
     }
 
-    /* Mobile Navigation */
     .mobile-nav-toggle {
       background: none;
       border: none;
@@ -120,7 +117,6 @@
       color: #ff4500;
     }
 
-    /* Mobile styles */
     @media (max-width: 767px) {
       .nav-menu {
         position: fixed;
@@ -158,7 +154,6 @@
       }
     }
 
-    /* Desktop styles */
     @media (min-width: 768px) {
       .mobile-nav-toggle {
         display: none;
@@ -190,7 +185,7 @@
     .hero-content {
       max-width: 800px;
       padding: 1rem;
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: rgba(0, 0, 0, 0);
       border-radius: 10px;
     }
 
@@ -237,45 +232,136 @@
       color: #ffffff;
     }
 
-    .cards {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      padding: 0 1rem;
+    /* Trending Section with Carousel */
+    .trending-section {
+      padding: 2rem 1rem;
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cards-container {
+      display: flex;
+      transition: transform 0.5s ease;
+      width: 100%;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      min-width: 100%;
+      padding: 0 1rem;
     }
 
     .card {
-      display: flex;
-      flex-direction: column;
       background: transparent;
       border-radius: 10px;
       overflow: hidden;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(255, 69, 0, 0.2);
     }
 
     .card img {
       width: 100%;
-      height: 250px;
+      height: 200px;
       object-fit: cover;
-      border-radius: 10px;
+      border-radius: 10px 10px 0 0;
     }
 
     .card-content {
-      padding: 1rem;
+      padding: 1.5rem;
+      background: rgba(30, 30, 30, 0.8);
+      flex-grow: 1;
+      border-radius: 0 0 10px 10px;
     }
 
     .card-content h3 {
       color: #fff;
       margin-bottom: 0.5rem;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
 
     .card-content p {
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: #ccc;
+      margin-bottom: 0;
     }
+
+    /* Carousel Navigation */
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+      gap: 0.5rem;
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #555;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .carousel-dot.active {
+      background: #ff4500;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 1024px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .card img {
+        height: 180px;
+      }
+      
+      .card-content {
+        padding: 1rem;
+      }
+    }
+
+    /* Animation for card entrance */
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .card {
+      animation: slideIn 0.5s ease forwards;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(5) { animation-delay: 0.5s; }
+    .card:nth-child(6) { animation-delay: 0.6s; }
+    .card:nth-child(7) { animation-delay: 0.7s; }
+    .card:nth-child(8) { animation-delay: 0.8s; }
 
     .reviews {
       padding: 2rem 1rem;
@@ -678,54 +764,89 @@
       <h2>Food Categories</h2>
       <ul>
         <li>Home</li>
-        <li>Sweet</li>
-        <li>Chinese</li>
-        <li>Indian</li>
-        <li>Drinks</li>
-        <li>Italian</li>
-        <li>Non-Vegetarian</li>
-        <li>Vegetarian</li>
-        <li>Fast Food</li>
-        <li>Desserts</li>
-        <li>Breakfast</li>
+        <li><a href="sweet.html">Sweet</a>  </li>
+        <li><a href="chinese.html">Chinese</a></li>
+        <li><a href="indian.html">Indian</a></li>
+        <li><a href="drinks.html">Drinks</a></li>
+        <li><a href="italian.html">Italian</a></li>
+        <li><a href="non-vegetarian.html">Non-Vegetarian</a></li>
+        <li><a href="vegetarian.html">Vegetarian</a></li>
+        <li><a href="fast-food.html">Fast Food</a></li>
+        <li><a href="desserts.html">Desserts</a></li>
+        <li><a href="breakfast.html">Breakfast</a></li>
       </ul>
     </div>
-    
-    
-    </button>
   </section>
 
-  <section>
+  <section class="trending-section">
     <h2 class="section-title">Trending & Hots</h2>
-    <div class="cards">
-      <div class="card">
-        <img src="https://i0.wp.com/prasuma.com/wp-content/uploads/2020/11/Tandoori-Momo.jpg?fit=800%2C470&ssl=1" alt="Tandoori Momos">
-        <div class="card-content">
-          <h3>Tandoori Momos</h3>
-          <p>We celebrate the rich heritage of Tandoori Momos of Chilli Inn, Station Road Chandausi.</p>
+    <div class="cards-container" id="cardsContainer">
+      <div class="cards" id="cardsSlide1">
+        <div class="card">
+          <img src="https://i0.wp.com/prasuma.com/wp-content/uploads/2020/11/Tandoori-Momo.jpg?fit=800%2C470&ssl=1" alt="Tandoori Momos">
+          <div class="card-content">
+            <h3>Tandoori Momos</h3>
+            <p>We celebrate the rich heritage of Tandoori Momos of Chilli Inn, Station Road Chandausi.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://www.shutterstock.com/image-photo/blue-lagoon-mojitoa-mocktail-drink-600nw-2198862581.jpg" alt="Blue Lagoon">
+          <div class="card-content">
+            <h3>Blue Lagoon</h3>
+            <p>Fusion of spice and heritage from Devarkhera, Chandausi.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://www.shutterstock.com/image-photo/deliciously-spiced-chicken-tikka-kabab-600nw-2495838045.jpg" alt="Chicken Tikka">
+          <div class="card-content">
+            <h3>Chicken Tikka</h3>
+            <p>Authentic Indian flavors crafted with dedication and care.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://www.foodandwine.com/thmb/XdFd-DvTtouryLCjeCqwhfmmK-A=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/molten-chocolate-cake-FT-RECIPE0220-0a33d7d0ab0c45588f7bfe742d33a9bc.jpg" alt="Chocolate Lava">
+          <div class="card-content">
+            <h3>Chocolate Lava</h3>
+            <p>Decadent and rich dessert to satisfy your sweet cravings.</p>
+          </div>
         </div>
       </div>
-      <div class="card">
-        <img src="https://www.shutterstock.com/image-photo/blue-lagoon-mojitoa-mocktail-drink-600nw-2198862581.jpg" alt="Blue Lagoon">
-        <div class="card-content">
-          <h3>Blue Lagoon</h3>
-          <p>Fusion of spice and heritage from Devarkhera, Chandausi.</p>
+      
+      <div class="cards" id="cardsSlide2">
+        <div class="card">
+          <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2021/08/veg-biryani-recipe-500x500.jpg" alt="Veg Biryani">
+          <div class="card-content">
+            <h3>Veg Biryani</h3>
+            <p>Aromatic basmati rice cooked with fresh vegetables and spices.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://www.cookwithmanali.com/wp-content/uploads/2020/05/Masala-Dosa-Recipe-500x500.jpg" alt="Masala Dosa">
+          <div class="card-content">
+            <h3>Masala Dosa</h3>
+            <p>Crispy rice crepe stuffed with spiced potato filling.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://www.vegrecipesofindia.com/wp-content/uploads/2020/01/paneer-butter-masala-1-500x500.jpg" alt="Paneer Butter Masala">
+          <div class="card-content">
+            <h3>Paneer Butter Masala</h3>
+            <p>Creamy and rich cottage cheese in tomato gravy.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://www.vegrecipesofindia.com/wp-content/uploads/2021/06/dal-makhani-1-500x500.jpg" alt="Dal Makhani">
+          <div class="card-content">
+            <h3>Dal Makhani</h3>
+            <p>Slow-cooked black lentils with butter and cream.</p>
+          </div>
         </div>
       </div>
-      <div class="card">
-        <img src="https://www.shutterstock.com/image-photo/deliciously-spiced-chicken-tikka-kabab-600nw-2495838045.jpg" alt="Chicken Tikka">
-        <div class="card-content">
-          <h3>Chicken Tikka</h3>
-          <p>Authentic Indian flavors crafted with dedication and care.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://www.foodandwine.com/thmb/XdFd-DvTtouryLCjeCqwhfmmK-A=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/molten-chocolate-cake-FT-RECIPE0220-0a33d7d0ab0c45588f7bfe742d33a9bc.jpg" alt="Chocolate Lava">
-        <div class="card-content">
-          <h3>Chocolate Lava</h3>
-          <p>Decadent and rich dessert to satisfy your sweet cravings.</p>
-        </div>
-      </div>
+    </div>
+    
+    <div class="carousel-nav" id="carouselNav">
+      <div class="carousel-dot active" data-slide="0"></div>
+      <div class="carousel-dot" data-slide="1"></div>
     </div>
   </section>
 
@@ -781,11 +902,11 @@
       <div class="star-rating">
         <label>Rating:</label>
         <div class="stars">
-          <input type="radio" name="rating" value="1" id="star1"><label for="star1">★</label>
-          <input type="radio" name="rating" value="2" id="star2"><label for="star2">★</label>
-          <input type="radio" name="rating" value="3" id="star3"><label for="star3">★</label>
-          <input type="radio" name="rating" value="4" id="star4"><label for="star4">★</label>
           <input type="radio" name="rating" value="5" id="star5"><label for="star5">★</label>
+          <input type="radio" name="rating" value="4" id="star4"><label for="star4">★</label>
+          <input type="radio" name="rating" value="3" id="star3"><label for="star3">★</label>
+          <input type="radio" name="rating" value="2" id="star2"><label for="star2">★</label>
+          <input type="radio" name="rating" value="1" id="star1"><label for="star1">★</label>
         </div>
       </div>
 
@@ -878,6 +999,52 @@
           !reviewToggle.contains(event.target)) {
         reviewFormContainer.classList.remove('active');
       }
+    });
+
+    // Carousel functionality
+    const cardsContainer = document.getElementById('cardsContainer');
+    const carouselNav = document.getElementById('carouselNav');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let currentSlide = 0;
+    const slideCount = 2; // Number of slides
+
+    // Auto slide every 5 seconds
+    let slideInterval = setInterval(nextSlide, 5000);
+
+    function goToSlide(slideIndex) {
+      currentSlide = slideIndex;
+      cardsContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+      
+      // Update active dot
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+      
+      // Reset timer when manually navigating
+      clearInterval(slideInterval);
+      slideInterval = setInterval(nextSlide, 5000);
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slideCount;
+      goToSlide(currentSlide);
+    }
+
+    // Add click event to dots
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        goToSlide(parseInt(dot.dataset.slide));
+      });
+    });
+
+    // Pause on hover
+    cardsContainer.addEventListener('mouseenter', () => {
+      clearInterval(slideInterval);
+    });
+
+    cardsContainer.addEventListener('mouseleave', () => {
+      clearInterval(slideInterval);
+      slideInterval = setInterval(nextSlide, 5000);
     });
   </script>
 </body>
