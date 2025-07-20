@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Indian | Chandausi Food</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #51075D;
+      --bg: #f5f5dc;
+      --card: #fff4e6;
+      --text: #333;
+      --white: #fff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: var(--primary);
+      color: var(--white);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-bar input {
+      padding: 8px 10px;
+      font-size: 15px;
+      width: 180px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .menu-toggle {
+      font-size: 28px;
+      cursor: pointer;
+      color: white;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 250px;
+      height: 100vh;
+      background: var(--primary);
+      padding: 60px 20px;
+      transition: left 0.3s ease;
+      z-index: 2000;
+      overflow-y: auto;
+    }
+
+    nav.active {
+      left: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .nav-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 1500;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    main {
+      flex: 1;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 30px;
+      font-weight: 800;
+      background-image: url(https://www.shutterstock.com/image-photo/assorted-indian-food-set-on-260nw-796389415.jpg);
+      padding: 60px 20px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 15px;
+      padding: 0 10px;
+      justify-items: center;
+    }
+
+    .shop-card {
+      width: 100%;
+      max-width: 200px;
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .shop-card:hover {
+      transform: scale(1.05);
+    }
+
+    .shop-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+
+    .shop-card h3 {
+      padding: 10px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    footer {
+      background: var(--white);
+      color: #000;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    .home-tab {
+      font-size: 30px;
+      font-weight: 900;
+      text-align: center;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+      border-radius: 15px;
+    }
+
+    @media (max-width: 600px) {
+      .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .search-bar input {
+        width: 130px;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+  <header>
+    <div class="logo">Chandausi Food</div>
+    <div class="header-right">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search...">
+      </div>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </div>
+  </header>
+
+  <nav id="mobileNav">
+    <div class="nav-close" onclick="toggleMenu()">×</div>
+    <ul>
+      <li><a href="index.html" class="home-tab">🏠 Home</a></li>
+      <li><a href="sweet.html" onclick="toggleMenu()">Sweet</a></li>
+      <li><a href="chinese.html" onclick="toggleMenu()">Chinese</a></li>
+      <li><a href="indian.html" onclick="toggleMenu()">Indian</a></li>
+      <li><a href="drinks.html" onclick="toggleMenu()">Drinks</a></li>
+      <li><a href="italian.html" onclick="toggleMenu()">Italian</a></li>
+      <li><a href="non-veg.html" onclick="toggleMenu()">Non-Vegetarian</a></li>
+      <li><a href="veg.html" onclick="toggleMenu()">Vegetarian</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h2>Indian Restaurants</h2>
+    <div class="grid-container">
+      <div class="shop-card"><img src="https://lh3.googleusercontent.com/p/AF1QipMFmVJGwd-xp_J5JLzAdUrkZttaJa0Dq-fswGUG=s1360-w1360-h1020-rw" alt="Paradise Tourist Dhaba"><h3>Paradise Tourist Dhaba</h3></div>
+      <div class="shop-card"><img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nre5p-hBz37rHj56r4VHZphZWcNSYezfKsfTHglr3MR_qfdRwQ3qRFi9t2AGfc3blYVCRcEtycNaRwL9WHOR0rAH7eI43xvmk9li3IOG8zw-32Llh573a6u-af5GBqmuioMI1O5sg=s1360-w1360-h1020-rw" alt="Mahendra Restaurant"><h3>Mahendra Restaurant</h3></div>
+      <div class="shop-card"><img src="https://lh3.googleusercontent.com/p/AF1QipOOsvgvv3BltsrVpmiNyAxsARfMv-r3KMfWzG4O=s1360-w1360-h1020-rw" alt="Sitaram Hotel"><h3>Sitaram Hotel</h3></div>
+      <div class="shop-card"><img src="https://lh3.googleusercontent.com/p/AF1QipPaC2nwFG0BBc4PEa9zzTzXcU6bAkwKIddpTKGt=s1360-w1360-h1020-rw" alt="Chaska Dhaba"><h3>Chaska Dhaba</h3></div>
+      <div class="shop-card"><img src="https://lh3.googleusercontent.com/p/AF1QipNewlZ52CZp_mkMDecBfkAO69E3jakIn0UQ_4ls=s1360-w1360-h1020-rw" alt="Crystal City Cafe"><h3>Crystal City Cafe</h3></div>
+      <div class="shop-card"><img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4npcDrav9L3izwDyCAAC_iIIRtX7gWq3t5a4i_6FFX5-vPecXe689ie8jFKMP_rv9m4FYxfnnUMBNP1uvpXd14VqjxscOUG8VW6NOvsOy3dj8vHulb_QR4dP-NbK1Tc9O284v2RASg=s1360-w1360-h1020-rw" alt="Zaika Food Point"><h3>Zaika Food Point</h3></div>
+      <div class="shop-card"><img src="https://b.zmtcdn.com/data/pictures/chains/9/21279739/d39a9e5579e19fe3864fd90d2c8ab694.jpg?fit=around|960:500&crop=960:500;*,*" alt="Gaurishaa Foods"><h3>Gaurishaa Foods</h3></div>
+      <div class="shop-card"><img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4npADl2llT3YxyGM9yONs8Ap31vC51mxLIbGIUVzC0DcITnFPpGjHi6NQUYjRoXp5WCXpmgwBcVNgJwzemzivkZ97SN94U_bwdxlVy2y35hZj4Hd9eebMMIYe_-_gGI3CpAOsD2j-w=s1360-w1360-h1020-rw" alt="Wave"><h3>Wave</h3></div>
+    </div>
+  </main>
+
+
+  <footer>
+    <p>&copy; 2025 Chandausi Food. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('mobileNav');
+      const overlay = document.getElementById('overlay');
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+
+    const container = document.getElementById('restaurantList');
+    restaurants.forEach(name => {
+      const card = document.createElement('div');
+      card.className = 'shop-card';
+      card.innerHTML = `
+        <img src="https://source.unsplash.com/200x140/?indian,restaurant" alt="${name}">
+        <h3>${name}</h3>
+      `;
+      container.appendChild(card);
+    });
+
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+      const val = e.target.value.toLowerCase();
+      const cards = document.querySelectorAll('.shop-card');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(val) ? 'inline-block' : 'none';
+      });
+    });
+  </script>
+
+</body>
+</html>
